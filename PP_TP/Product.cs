@@ -14,6 +14,15 @@ namespace PP_TP
      int Quantity { get; set; }
 
 
+    public Product (int code, float price)
+        {
+            this.Code = code;
+            this.Description = "";
+            this.Price = price;
+            this.Quantity = 0;
+        }
+
+
 
     }
 }
