@@ -10,13 +10,13 @@ namespace PP_TP
     {
         static void Main(string[] args)
         {
+            Console.ForegroundColor = System.ConsoleColor.Green;
 
             SuperDume superdume = new SuperDume();
 
             int option = -1;
             do
             {
-                Console.ForegroundColor = System.ConsoleColor.Green;
                 Console.WriteLine("----------:.SuPeRDuMe.:-------");
                 Console.WriteLine("1 - Stock Manager");
                 Console.WriteLine("2 - Client Manager");
@@ -172,17 +172,6 @@ namespace PP_TP
                 };
 
             } while (option != 0);
-
-        }
-        /*
-         * return -1 if not found, otherwise, returns inputed code
-         */
-        public static Product SelectProduct(SuperDume s)
-        {
-            // get input from user
-            int input = int.Parse(Console.ReadLine());
-
-            return CheckProductExists(s, input);
 
         }
 
