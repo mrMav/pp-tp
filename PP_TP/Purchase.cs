@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PP_TP
 {
-    class Purchase
+   public class Purchase
     {
         public List<Product> Products { get; set; }
         public string Description { get; set; }
@@ -22,8 +22,7 @@ namespace PP_TP
             this.Quantity = quant;
             this.PurchaseTotal = pTotal;
             this.AccumulatedPoints = accPoints;
-
-        }
+    }
 
     }
 }
