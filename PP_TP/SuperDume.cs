@@ -11,6 +11,15 @@ namespace PP_TP
         public List<ClientCard> ClientCards { get; set; }
         public List<Product> Stock { get; set; }
 
+        // constructor
+        public SuperDume()
+        {
+
+            this.ClientCards = new List<ClientCard>();
+            this.Stock = new List<Product>();
+
+        }
+
         public void AddProduct(int code, string desc, float price, int quant)
         {
             Stock.Add(new Product(code, desc, price, quant));

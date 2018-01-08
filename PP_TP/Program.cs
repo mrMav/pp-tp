@@ -17,13 +17,13 @@ namespace PP_TP
             do
             {
                 Console.ForegroundColor = System.ConsoleColor.Green;
-                Console.WriteLine("----------:.SuPeRDuMe.:-------\n");
+                Console.WriteLine("----------:.SuPeRDuMe.:-------");
                 Console.WriteLine("1 - Stock Manager");
                 Console.WriteLine("2 - Cliente Manager");
                 Console.WriteLine("3 - Save Data");
                 Console.WriteLine("4 - Load Data");
                 Console.WriteLine("0 - Exit");
-                Console.WriteLine("--------------------------\n");
+                Console.WriteLine("--------------------------");
                 Console.WriteLine("Input option:");
 
                 option = int.Parse(Console.ReadLine());
@@ -32,39 +32,73 @@ namespace PP_TP
                 {
                     case 1:
                         {
-                            
-                            Console.WriteLine("1 - List Products");
-                            Console.WriteLine("2 - Add New Product");
-                            Console.WriteLine("3 - Update Stock");
-                            Console.WriteLine("4 - Delete Product");
-                            Console.WriteLine("0 - Exit");
 
-                            option = int.Parse(Console.ReadLine());
-
-                            switch (option)
+                            do
                             {
-                                case 1:
+                                Console.WriteLine("--------------------------");
+                                Console.WriteLine("1 - List Products");
+                                Console.WriteLine("2 - Add New Product");
+                                Console.WriteLine("3 - Update Stock");
+                                Console.WriteLine("4 - Delete Product");
+                                Console.WriteLine("0 - Exit");
+                                Console.WriteLine("--------------------------");
 
-                                    superdume.ListProducts();
-                                    
-                                    break;
+                                option = int.Parse(Console.ReadLine());
 
-                                case 2:
+                                switch (option)
+                                {
+                                    case 1:
 
-                                    int selectedProduct = SelectProduct(superdume);
+                                        superdume.ListProducts();
 
-                                    break;
+                                        break;
 
-                                case 3:
+                                    case 2:
 
-                                    break;
+                                        string desc;
+                                        float price;
+                                        int quant;
 
-                                case 4:
+                                        Console.WriteLine("-> Input new product code:");
+                                        int inputedCode = int.Parse(Console.ReadLine());
 
-                                    break;
+                                        int checkExists = CheckProductExists(superdume, inputedCode);
 
-                            }
+                                        if (checkExists == -1)
+                                        {
 
+                                            Console.WriteLine("-> Input new product description:");
+                                            desc = Console.ReadLine();
+
+                                            Console.WriteLine("-> Input new product price:");
+                                            price = float.Parse(Console.ReadLine());
+
+                                            Console.WriteLine("-> Input new product quantity:");
+                                            quant = int.Parse(Console.ReadLine());
+                                            
+                                            superdume.AddProduct(inputedCode, desc, price, quant);
+
+                                        }
+                                        else
+                                        {
+
+                                            Console.WriteLine("Product code already in use!");
+
+                                        }
+
+                                        break;
+
+                                    case 3:
+
+                                        break;
+
+                                    case 4:
+
+                                        break;
+
+                                }
+
+                            } while (option != 0);
 
                             break;
                         }
@@ -91,23 +125,61 @@ namespace PP_TP
             } while (option != 0);
 
         }
-
+        /*
+         * return -1 if not found, otherwise, returns inputed code
+         */
         public static int SelectProduct(SuperDume s)
         {
-
-            Console.WriteLine("-> Input product code:");
+            // get input from user
             int input = int.Parse(Console.ReadLine());
-            
-            foreach(Product p in s.Stock)
+
+            // if stock is not empty
+            if (s.Stock.Count > 0)
             {
 
-                if(p.Code == input)
+                // cycle each product in stock
+                foreach (Product p in s.Stock)
                 {
-                    return input;
+
+                    // if the product code is found
+                    if (p.Code == input)
+                    {
+                        return input;
+                    }
+
                 }
 
             }
 
+            // this means that no product was found
+            return -1;
+
+        }
+
+        /*
+         * return -1 if not found, otherwise, returns inputed code
+         */
+        public static int CheckProductExists(SuperDume s, int code)
+        {
+            // if stock is not empty
+            if (s.Stock.Count > 0)
+            {
+
+                // cycle each product in stock
+                foreach (Product p in s.Stock)
+                {
+
+                    // if the product code is found
+                    if (p.Code == code)
+                    {
+                        return code;
+                    }
+
+                }
+
+            }
+
+            // this means that no product was found
             return -1;
 
         }
