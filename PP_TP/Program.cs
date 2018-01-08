@@ -104,10 +104,77 @@ namespace PP_TP
                         }
                     case 2:
                         {
+                                // Client Manager
 
-                            break;
+                                do
+                                {
+                                    Console.WriteLine("--------------------------");
+                                    Console.WriteLine("1 - Add New Client");
+                                    Console.WriteLine("2 - List Clients");
+                                    Console.WriteLine("3 - Select Client");                                 
+                                    Console.WriteLine("0 - Exit");
+                                    Console.WriteLine("--------------------------");
 
-                        }
+                                    option = int.Parse(Console.ReadLine());
+
+                                    switch (option)
+                                    {
+                                        case 1:
+
+
+                                            break;
+
+                                        case 2:
+                                            // Client Actions
+                                        do
+                                        {
+                                            Console.WriteLine("--------------------------");
+                                            Console.WriteLine("1 - Make Purchase");
+                                            Console.WriteLine("2 - List Purchases");
+                                            Console.WriteLine("3 - Check Balance");
+                                            Console.WriteLine("0 - Exit");
+                                            Console.WriteLine("--------------------------");
+
+                                            option = int.Parse(Console.ReadLine());
+
+                                            switch (option)
+                                            {
+                                                case 1:
+
+                                                    break;
+
+                                                case 2:
+
+
+                                                    break;
+
+                                                case 3:
+                                                    break;
+
+                                                case 0:
+
+                                                    break;
+
+                                            }
+
+                                        } while (option != 0);
+
+                                        break;
+
+                                        case 3:
+                                            break;
+
+                                        case 0:
+
+                                            break;
+
+                                    }
+
+                                } while (option != 0);
+
+                                break;
+
+                            }
                     case 3:
                         {
 
