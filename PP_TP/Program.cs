@@ -15,6 +15,8 @@ namespace PP_TP
             SuperDume superdume = new SuperDume();
 
             int option = -1;
+            int optionStockManager = -1;
+            int optionClientsManager = -1;
             do
             {
                 Console.WriteLine("----------:.SuPeRDuMe.:-------");
@@ -27,13 +29,14 @@ namespace PP_TP
                 Console.WriteLine("Input option:");
 
                 option = int.Parse(Console.ReadLine());
+                
 
                 switch (option)
                 {
                     case 1:
                         {
                             // stock manager
-
+                            
                             do
                             {
                                 Console.WriteLine("--------------------------");
@@ -41,12 +44,12 @@ namespace PP_TP
                                 Console.WriteLine("2 - Add New Product");
                                 Console.WriteLine("3 - Update Stock");
                                 Console.WriteLine("4 - Delete Product");
-                                Console.WriteLine("0 - Exit");
+                                Console.WriteLine("0 - Back");
                                 Console.WriteLine("--------------------------");
 
-                                option = int.Parse(Console.ReadLine());
+                                optionStockManager = int.Parse(Console.ReadLine());
 
-                                switch (option)
+                                switch (optionStockManager)
                                 {
                                     case 1:
 
@@ -80,7 +83,7 @@ namespace PP_TP
 
                                 }
 
-                            } while (option != 0);
+                            } while (optionStockManager != 0);
 
                             break;
                         }
@@ -175,6 +178,8 @@ namespace PP_TP
             } while (option != 0);
 
         }
+
+        #region ProductManagement
 
         /*
          * return -1 if not found, otherwise, returns inputed code
@@ -280,7 +285,30 @@ namespace PP_TP
             }
         }
 
-        
+        public static void DeleteProduct(SuperDume s)
+        {
+
+            Console.WriteLine("-> Input desired product code to delete:");
+            int inputedCode = int.Parse(Console.ReadLine());
+
+            Product product = CheckProductExists(s, inputedCode);
+
+            if(product != null)
+            {
+                s.DeleteProduct(product);
+
+                Console.WriteLine("Product removed sucessfully.");
+
+            } else
+            {
+
+                Utils.PrintError("Specified code not found in stock!\nNothing happened.");
+
+            }
+
+        }
+
+        #endregion ProductManagment
 
         //Function to check for Id cards already made
         //public static Client CheckClientExists(SuperDume s, string cc )
@@ -302,7 +330,7 @@ namespace PP_TP
 
 
 
-               
+
         //    }
         //    return null;
         //}
