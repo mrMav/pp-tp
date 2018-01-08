@@ -13,11 +13,11 @@ namespace PP_TP
         public int CardPoints { get; set; }
 
         //constructor
-        public ClientCard(Client aClient, List<Purchase> purchases, int cPoints)
+        public ClientCard(Client aClient)
         {
             this.AssignedClient = aClient;
-            this.Purchases = purchases;
-            this.CardPoints = cPoints;
+            this.Purchases = null;
+            this.CardPoints = 0;
         }
         
 

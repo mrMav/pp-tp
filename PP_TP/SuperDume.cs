@@ -16,7 +16,7 @@ namespace PP_TP
             Stock.Add(new Product(code, desc, price, quant));
         }
 
-        public void ListProducts(int code, string desc, float price, int quant)
+        public void ListProducts()
         {
             foreach(Product p in Stock)
             {
@@ -28,9 +28,9 @@ namespace PP_TP
 
         }
 
-        public void AddClient(int code, string desc, float price, int quant)
+        public void AddClient(Client aClient)
         {
-            Stock.Add(new Product(code, desc, price, quant));
+            ClientCards.Add(new ClientCard(aClient));
         }
     }
 }
