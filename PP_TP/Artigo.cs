@@ -6,13 +6,7 @@ using System.Threading.Tasks;
 
 namespace PP_TP
 {
-    class Program
+    class Artigo
     {
-        static void Main(string[] args)
-        {
-            // jorge noro test
-            // pardo teste
-
-        }
     }
 }
