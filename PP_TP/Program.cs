@@ -125,8 +125,9 @@ namespace PP_TP
                                     switch (option)
                                     {
                                         case 1:
+                                        // Add new client
 
-
+                                  
                                             break;
 
                                         case 2:
@@ -235,6 +236,60 @@ namespace PP_TP
             // this means that no product was found
             return -1;
 
+        }
+
+        
+
+        //Function to check for Id cards already made
+        //public static Client CheckClientExists(SuperDume s, string cc )
+        //{
+        //    //
+        //    if(s.ClientCards.Count > 0 )
+        //    {
+
+        //        foreach(Client c in s.ClientCards)
+        //        {
+        //            if( == cc)
+        //            {
+        //                return cc;
+        //            }
+
+        //        }
+
+
+
+
+
+               
+        //    }
+        //    return null;
+        //}
+
+        public static void AddClient(SuperDume s)
+        {
+            string name, adress, email, phoneNumber, cc, nif;
+            ClientCard card;
+            int i;
+
+            Console.WriteLine("-> Enter Full Name");
+            name = Console.ReadLine();
+
+            Console.WriteLine("\n-> Enter Adress");
+            adress = Console.ReadLine();
+
+            Console.WriteLine("\n-> Enter Email");
+            email = Console.ReadLine();
+
+            Console.WriteLine("\n-> Enter Phone Number");
+            phoneNumber = Console.ReadLine();
+
+            Console.WriteLine("\n-> Enter ID card");
+            cc = Console.ReadLine();
+
+            Console.WriteLine("\n-> Enter Tax Number");
+            nif = Console.ReadLine();
+
+             
         }
 
     }
