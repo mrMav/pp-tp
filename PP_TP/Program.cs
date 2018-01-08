@@ -32,6 +32,7 @@ namespace PP_TP
                 {
                     case 1:
                         {
+                            // stock manager
 
                             do
                             {
@@ -49,11 +50,15 @@ namespace PP_TP
                                 {
                                     case 1:
 
+                                        // list products
+
                                         superdume.ListProducts();
 
                                         break;
 
                                     case 2:
+
+                                        // add new product
 
                                         string desc;
                                         float price;
