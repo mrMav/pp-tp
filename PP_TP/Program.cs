@@ -17,6 +17,7 @@ namespace PP_TP
             int option = -1;
             int optionStockManager = -1;
             int optionClientsManager = -1;
+            int optionClientActions = -1;
             do
             {
                 Console.WriteLine("----------:.SuPeRDuMe.:-------");
@@ -97,12 +98,13 @@ namespace PP_TP
                                 Console.WriteLine("1 - Add New Client");
                                 Console.WriteLine("2 - List Clients");
                                 Console.WriteLine("3 - Client Actions");
-                                Console.WriteLine("0 - Exit");
+                                Console.WriteLine("0 - Back");
                                 Console.WriteLine("--------------------------");
+                                Console.WriteLine("Input option:");
 
-                                option = int.Parse(Console.ReadLine());
+                                optionClientsManager = int.Parse(Console.ReadLine());
 
-                                switch (option)
+                                switch (optionClientsManager)
                                 {
                                     case 1:
                                         // Add new client
@@ -113,7 +115,7 @@ namespace PP_TP
 
                                     case 2:
                                         //List Clients
-                                        
+                                        superdume.ListClients();
 
                                         break;
 
@@ -126,12 +128,13 @@ namespace PP_TP
                                             Console.WriteLine("1 - Make Purchase");
                                             Console.WriteLine("2 - List Purchases");
                                             Console.WriteLine("3 - Check Balance");
-                                            Console.WriteLine("0 - Exit");
+                                            Console.WriteLine("0 - Back");
                                             Console.WriteLine("--------------------------");
+                                            Console.WriteLine("Input option:");
 
-                                            option = int.Parse(Console.ReadLine());
+                                            optionClientActions = int.Parse(Console.ReadLine());
 
-                                            switch (option)
+                                            switch (optionClientActions)
                                             {
                                                 case 1:
 
@@ -151,7 +154,7 @@ namespace PP_TP
 
                                             }
 
-                                        } while (option != 0);
+                                        } while (optionClientActions != 0);
                                         break;
 
                                     case 0:
@@ -160,7 +163,7 @@ namespace PP_TP
 
                                 }
 
-                            } while (option != 0);
+                            } while (optionClientsManager != 0);
 
                             break;
 
@@ -362,6 +365,8 @@ namespace PP_TP
 
                 Console.WriteLine("\n-> Enter Tax Number");
                 nif = Console.ReadLine();
+
+                s.AddClient(name, adress, phoneNumber, email, cc, nif);
             }
             else
             {
