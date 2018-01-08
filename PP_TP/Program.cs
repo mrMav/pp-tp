@@ -186,7 +186,7 @@ namespace PP_TP
         #region ProductManagement
 
         /*
-         * return -1 if not found, otherwise, returns inputed code
+         * return null if not found, otherwise, returns found product
          */
         public static Product CheckProductExists(SuperDume s, int code)
         {

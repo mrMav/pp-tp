@@ -58,11 +58,9 @@ namespace PP_TP
             Stock.Remove(p);   
         }
 
-        public void AddClient()
+        public void AddClient(string name, string adress, string phoneNumber, string email, string cc, string nif)
         {
-
-            // TODO: colocar parametros no constructor abaixo
-            //ClientCards.Add(new Client());
+           Clients.Add(new Client(name, adress, phoneNumber, email, cc, nif));
         }
     }
 }
