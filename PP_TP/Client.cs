@@ -8,12 +8,12 @@ namespace PP_TP
 {
     class Client
     {
-        string Name { get; set; }
-        string Adress { get; set; }
-        string Email { get; set; }
-        string PhoneNumber { get; set; }
-        string CC { get; set; }
-        string Nif { get; set; }
+        public string Name { get; set; }
+        public string Adress { get; set; }
+        public string Email { get; set; }
+        public string PhoneNumber { get; set; }
+        public string CC { get; set; }
+        public string Nif { get; set; }
 
         public Client (string name,string adress, string phoneNumber, string email, string cc, string Nif)
         {
