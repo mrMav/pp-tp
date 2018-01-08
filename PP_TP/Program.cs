@@ -19,7 +19,7 @@ namespace PP_TP
                 Console.ForegroundColor = System.ConsoleColor.Green;
                 Console.WriteLine("----------:.SuPeRDuMe.:-------");
                 Console.WriteLine("1 - Stock Manager");
-                Console.WriteLine("2 - Cliente Manager");
+                Console.WriteLine("2 - Client Manager");
                 Console.WriteLine("3 - Save Data");
                 Console.WriteLine("4 - Load Data");
                 Console.WriteLine("0 - Exit");
@@ -133,26 +133,7 @@ namespace PP_TP
             // get input from user
             int input = int.Parse(Console.ReadLine());
 
-            // if stock is not empty
-            if (s.Stock.Count > 0)
-            {
-
-                // cycle each product in stock
-                foreach (Product p in s.Stock)
-                {
-
-                    // if the product code is found
-                    if (p.Code == input)
-                    {
-                        return input;
-                    }
-
-                }
-
-            }
-
-            // this means that no product was found
-            return -1;
+            return CheckProductExists(s, input);
 
         }
 

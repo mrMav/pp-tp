@@ -14,6 +14,7 @@ namespace PP_TP
         public string PhoneNumber { get; set; }
         public string CC { get; set; }
         public string NIF { get; set; }
+        public ClientCard Card { get; set; }
 
         public Client (string name, string adress, string phoneNumber, string email, string cc, string nif)
         {
@@ -23,6 +24,7 @@ namespace PP_TP
             this.PhoneNumber = phoneNumber;
             this.CC = cc;
             this.NIF = nif;
+            this.Card = new ClientCard();
         }
     }
 }
