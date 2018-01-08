@@ -1,13 +1,13 @@
 SuperDome
-	GerirArtigos
-		Adicionar Novo Artigo
-		Actualizar Stock
-		Eliminar Artigo
-		Listar Artigos
+	GerirArtigos //DONE
+		Adicionar Novo Artigo //done
+		Actualizar Stock //done
+		Eliminar Artigo //done
+		Listar Artigos //done
 	GerirClientes
-		Adicionar Novo Cliente
-		Listar Clientes
-		Selecionar Cliente
+		Adicionar Novo Cliente //done
+		Listar Clientes // Done
+		Selecionar Cliente // done
 			Efetuar Compra			
 			Listar Compras
 			Consultar Saldo			
