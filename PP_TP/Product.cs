@@ -11,13 +11,9 @@ namespace PP_TP
          int Code { get; set; }
          string Description { get; set; }
          float Price { get; set; }
-         int Quantity { get; set; }
-    
- 
-        
+         int Quantity { get; set; }        
 
-    public Product (int code, float price)
-        {
+        public Product (int code, float price) {
             this.Code = code;
             this.Description = "";
             this.Price = price;

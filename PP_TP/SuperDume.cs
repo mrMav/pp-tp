@@ -8,6 +8,7 @@ namespace PP_TP
 {
     class SuperDume
     {
-        public List<Product> stock { get; set; }
+        public List<ClientCard> ClientCards { get; set; }
+        public List<Product> Stock { get; set; }
     }
 }

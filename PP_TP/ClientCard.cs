@@ -8,14 +8,16 @@ namespace PP_TP
 {
     public class ClientCard
     {
-        public Client Clients { get; set; }
+        public Client AssignedClient { get; set; }
         public List<Purchase> Purchases { get; set; }
         public int CardPoints { get; set; }
 
         //constructor
-        public ClientCard()
+        public ClientCard(Client aClient, List<Purchase> purchases, int cPoints)
         {
-            this.CardPoints = 0;
+            this.AssignedClient = aClient;
+            this.Purchases = purchases;
+            this.CardPoints = cPoints;
         }
         
 
