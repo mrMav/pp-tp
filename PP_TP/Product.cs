@@ -8,11 +8,12 @@ namespace PP_TP
 {
     class Product
     {
-     int Code { get; set; }
-     string Description { get; set; }
-     float Price { get; set; }
-     int Quantity { get; set; }
-
+         int Code { get; set; }
+         string Description { get; set; }
+         float Price { get; set; }
+         int Quantity { get; set; }
+    
+        
 
     public Product (int code, float price)
         {
@@ -21,8 +22,5 @@ namespace PP_TP
             this.Price = price;
             this.Quantity = 0;
         }
-
-
-
     }
 }
