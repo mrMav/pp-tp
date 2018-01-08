@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace PP_TP
 {
-    class Artigo
+    class Product
     {
+     int Code { get; set; }
+     string Description { get; set; }
+     float Price { get; set; }
+     int Quantity { get; set; }
+
+
+
     }
 }
