@@ -8,9 +8,9 @@ namespace PP_TP
 {
     public class ClientCard
     {
-
-        public int CardPoints { get; set; }
+        public Client Clients { get; set; }
         public List<Purchase> Purchases { get; set; }
+        public int CardPoints { get; set; }
 
         //constructor
         public ClientCard()
