@@ -26,5 +26,10 @@ namespace PP_TP
             this.NIF = nif;
             this.Card = new ClientCard();
         }
+
+        public override string ToString()
+        {
+            return "Name: " + this.Name + ", ID: " + this.CC + ", NIF: " + this.NIF + ", Phone Numer: " + this.PhoneNumber;
+        }
     }
 }

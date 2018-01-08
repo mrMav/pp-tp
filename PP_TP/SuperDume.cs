@@ -39,9 +39,23 @@ namespace PP_TP
                 Utils.PrintError("No products found!");
             }
         }
-        public void DeleteProduct(int code)
+        public void ListClients()
         {
-
+            if (Clients.Count > 0)
+            {
+                foreach (Client c in Clients)
+                {
+                    Console.WriteLine(c);
+                }
+            }
+            else
+            {
+                Utils.PrintError("No clients found!");
+            }
+        }
+        public void DeleteProduct(Product p)
+        {
+            Stock.Remove(p);   
         }
 
         public void AddClient()
