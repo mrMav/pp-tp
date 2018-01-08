@@ -235,7 +235,7 @@ namespace PP_TP
             else
             {
 
-                Console.WriteLine("Product code already in use!");
+                Utils.PrintError("Product code already in use!");
 
             }
         }
@@ -274,7 +274,7 @@ namespace PP_TP
             else
             {
 
-                Console.WriteLine("Product code does not exists!");
+                Utils.PrintError("Product code does not exists!");
 
             }
         }
