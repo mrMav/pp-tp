@@ -8,14 +8,14 @@ namespace PP_TP
 {
     class SuperDume
     {
-        public List<ClientCard> ClientCards { get; set; }
+        public List<Client> Clients { get; set; }
         public List<Product> Stock { get; set; }
 
         // constructor
         public SuperDume()
         {
 
-            this.ClientCards = new List<ClientCard>();
+            this.Clients = new List<Client>();
             this.Stock = new List<Product>();
 
         }
@@ -27,9 +27,16 @@ namespace PP_TP
 
         public void ListProducts()
         {
-            foreach(Product p in Stock)
+            if(Stock.Count > 0)
             {
-                Console.WriteLine(p);
+                foreach(Product p in Stock)
+                {
+                    Console.WriteLine(p);
+                }
+            }
+            else
+            {
+                Utils.PrintError("No products found!");
             }
         }
         public void DeleteProduct(int code)

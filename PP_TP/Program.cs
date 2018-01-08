@@ -10,13 +10,13 @@ namespace PP_TP
     {
         static void Main(string[] args)
         {
+            Console.ForegroundColor = System.ConsoleColor.Green;
 
             SuperDume superdume = new SuperDume();
 
             int option = -1;
             do
             {
-                Console.ForegroundColor = System.ConsoleColor.Green;
                 Console.WriteLine("----------:.SuPeRDuMe.:-------");
                 Console.WriteLine("1 - Stock Manager");
                 Console.WriteLine("2 - Client Manager");
@@ -60,44 +60,21 @@ namespace PP_TP
 
                                         // add new product
 
-                                        string desc;
-                                        float price;
-                                        int quant;
-
-                                        Console.WriteLine("-> Input new product code:");
-                                        int inputedCode = int.Parse(Console.ReadLine());
-
-                                        int checkExists = CheckProductExists(superdume, inputedCode);
-
-                                        if (checkExists == -1)
-                                        {
-
-                                            Console.WriteLine("-> Input new product description:");
-                                            desc = Console.ReadLine();
-
-                                            Console.WriteLine("-> Input new product price:");
-                                            price = float.Parse(Console.ReadLine());
-
-                                            Console.WriteLine("-> Input new product quantity:");
-                                            quant = int.Parse(Console.ReadLine());
-                                            
-                                            superdume.AddProduct(inputedCode, desc, price, quant);
-
-                                        }
-                                        else
-                                        {
-
-                                            Console.WriteLine("Product code already in use!");
-
-                                        }
+                                        AddProduct(superdume);
 
                                         break;
 
                                     case 3:
 
+                                        // update stock
+
+                                        UpdateStock(superdume);
+
                                         break;
 
                                     case 4:
+
+                                        // delete product
 
                                         break;
 
@@ -109,18 +86,18 @@ namespace PP_TP
                         }
                     case 2:
                         {
-                                // Client Manager
+                            // Client Manager
 
-                                do
-                                {
-                                    Console.WriteLine("--------------------------");
-                                    Console.WriteLine("1 - Add New Client");
-                                    Console.WriteLine("2 - List Clients");
-                                    Console.WriteLine("3 - Select Client");                                 
-                                    Console.WriteLine("0 - Exit");
-                                    Console.WriteLine("--------------------------");
+                            do
+                            {
+                                Console.WriteLine("--------------------------");
+                                Console.WriteLine("1 - Add New Client");
+                                Console.WriteLine("2 - List Clients");
+                                Console.WriteLine("3 - Select Client");
+                                Console.WriteLine("0 - Exit");
+                                Console.WriteLine("--------------------------");
 
-                                    option = int.Parse(Console.ReadLine());
+                                option = int.Parse(Console.ReadLine());
 
                                     switch (option)
                                     {
@@ -130,8 +107,8 @@ namespace PP_TP
                                   
                                             break;
 
-                                        case 2:
-                                            // Client Actions
+                                    case 2:
+                                        // Client Actions
                                         do
                                         {
                                             Console.WriteLine("--------------------------");
@@ -167,20 +144,20 @@ namespace PP_TP
 
                                         break;
 
-                                        case 3:
-                                            break;
+                                    case 3:
+                                        break;
 
-                                        case 0:
+                                    case 0:
 
-                                            break;
+                                        break;
 
-                                    }
+                                }
 
-                                } while (option != 0);
+                            } while (option != 0);
 
-                                break;
+                            break;
 
-                            }
+                        }
                     case 3:
                         {
 
@@ -198,22 +175,11 @@ namespace PP_TP
             } while (option != 0);
 
         }
-        /*
-         * return -1 if not found, otherwise, returns inputed code
-         */
-        public static int SelectProduct(SuperDume s)
-        {
-            // get input from user
-            int input = int.Parse(Console.ReadLine());
-
-            return CheckProductExists(s, input);
-
-        }
 
         /*
          * return -1 if not found, otherwise, returns inputed code
          */
-        public static int CheckProductExists(SuperDume s, int code)
+        public static Product CheckProductExists(SuperDume s, int code)
         {
             // if stock is not empty
             if (s.Stock.Count > 0)
@@ -226,7 +192,7 @@ namespace PP_TP
                     // if the product code is found
                     if (p.Code == code)
                     {
-                        return code;
+                        return p;
                     }
 
                 }
@@ -234,8 +200,84 @@ namespace PP_TP
             }
 
             // this means that no product was found
-            return -1;
+            return null;
 
+        }
+
+        /*
+         *  Adds a new product to the specified SuperDume
+         */
+        public static void AddProduct(SuperDume s)
+        {
+            string desc;
+            float price;
+            int quant;
+
+            Console.WriteLine("-> Input new product code:");
+            int inputedCode = int.Parse(Console.ReadLine());
+
+            Product product = CheckProductExists(s, inputedCode);
+
+            if (product == null)
+            {
+
+                Console.WriteLine("-> Input new product description:");
+                desc = Console.ReadLine();
+
+                Console.WriteLine("-> Input new product price:");
+                price = float.Parse(Console.ReadLine());
+
+                Console.WriteLine("-> Input new product quantity:");
+                quant = int.Parse(Console.ReadLine());
+
+                s.AddProduct(inputedCode, desc, price, quant);
+
+            }
+            else
+            {
+
+                Utils.PrintError("Product code already in use!");
+
+            }
+        }
+
+        /*
+         *  updates a selected product
+         */
+        public static void UpdateStock(SuperDume s)
+        {
+            float price;
+            int quant;
+
+            Console.WriteLine("-> Input desired product code to modify:");
+            int inputedCode = int.Parse(Console.ReadLine());
+
+            Product product = CheckProductExists(s, inputedCode);
+
+            if (product != null)
+            {
+
+                Console.WriteLine("Selected product: ");
+                Console.WriteLine(product);
+                
+                Console.WriteLine("-> Input new product price:");
+                price = float.Parse(Console.ReadLine());
+
+                Console.WriteLine("-> Input new product quantity:");
+                quant = int.Parse(Console.ReadLine());
+
+                product.Price = price;
+                product.Quantity = quant;
+
+                Console.WriteLine("Product modified with sucess!");
+
+            }
+            else
+            {
+
+                Utils.PrintError("Product code does not exists!");
+
+            }
         }
 
         
