@@ -13,6 +13,7 @@ namespace PP_TP
          float Price { get; set; }
          int Quantity { get; set; }
     
+ 
         
 
     public Product (int code, float price)
