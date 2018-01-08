@@ -37,9 +37,11 @@ namespace PP_TP
 
         }
 
-        public void AddClient(Client aClient)
+        public void AddClient()
         {
-            ClientCards.Add(new ClientCard(aClient));
+
+            // TODO: colocar parametros no constructor abaixo
+            //ClientCards.Add(new Client());
         }
     }
 }
