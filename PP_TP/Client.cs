@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PP_TP
 {
-    class Client
+    public class Client
     {
         public string Name { get; set; }
         public string Adress { get; set; }
