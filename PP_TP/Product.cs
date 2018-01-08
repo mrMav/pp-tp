@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PP_TP
 {
-    class Product
+    public class Product
     {
      int Code { get; set; }
      string Description { get; set; }

@@ -6,16 +6,17 @@ using System.Threading.Tasks;
 
 namespace PP_TP
 {
-    class Purchase
+    public class Purchase
     {
         public List<Product> Products { get; set; }
+        public List<ClientCard> ClientCards { get; set; }
         public string Description { get; set; }
         public DateTime PurchaseDate { get; set; }
         public int Quantity { get; set; }
         public float PurchaseTotal { get; set; }
         public int AccumulatedPoints { get; set; }
 
-        public Purchase(List<Product> products, string desc, int quant, float pTotal, int accPoints)
+        public void Purchases(List<Product> products, string desc, int quant, float pTotal, int accPoints)
         {
             this.Description = desc;
             this.PurchaseDate = DateTime.Now;
@@ -27,3 +28,4 @@ namespace PP_TP
 
     }
 }
+
