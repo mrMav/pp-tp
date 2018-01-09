@@ -18,6 +18,7 @@ namespace PP_TP
             int optionStockManager = -1;
             int optionClientsManager = -1;
             int optionClientActions = -1;
+            int optionMakePurchase = -1;
             do
             {
                 Console.WriteLine("----------:.SuPeRDuMe.:-------");
@@ -120,42 +121,78 @@ namespace PP_TP
                                         break;
 
                                     case 3:
-
-                                        // Client Actions
-                                        do
                                         {
-                                            Console.WriteLine("--------------------------");
-                                            Console.WriteLine("1 - Make Purchase");
-                                            Console.WriteLine("2 - List Purchases");
-                                            Console.WriteLine("3 - Check Balance");
-                                            Console.WriteLine("0 - Back");
-                                            Console.WriteLine("--------------------------");
-                                            Console.WriteLine("Input option:");
+                                            //Choose Client
+                                            Console.WriteLine("Choose a client: ");
+                                            string NIF = Console.ReadLine();
 
-                                            optionClientActions = int.Parse(Console.ReadLine());
-
-                                            switch (optionClientActions)
+                                            // Client Actions
+                                            do
                                             {
-                                                case 1:
+                                                Console.WriteLine("--------------------------");
+                                                Console.WriteLine("1 - Make Purchase");
+                                                Console.WriteLine("2 - List Purchases");
+                                                Console.WriteLine("3 - Check Balance");
+                                                Console.WriteLine("0 - Back");
+                                                Console.WriteLine("--------------------------");
+                                                Console.WriteLine("Input option:");
 
-                                                    break;
+                                                optionClientActions = int.Parse(Console.ReadLine());
 
-                                                case 2:
+                                                switch (optionClientActions)
+                                                {
+                                                    // STILL WORKING ON THIS DOWN HERE!! by Francisco
+                                                    case 1:
+                                                        List<Product> cart = new List<Product>();
+                                                        do
+                                                        {
+                                                            Console.WriteLine("--------------------------");
+                                                            Console.WriteLine("1 - Add Product to Shopping Cart");
+                                                            Console.WriteLine("2 - Shopping Cart");
+                                                            Console.WriteLine("0 - Back");
+                                                            Console.WriteLine("--------------------------");
+                                                            Console.WriteLine("Input option:");
+
+                                                            optionMakePurchase = int.Parse(Console.ReadLine());
+
+                                                            switch (optionMakePurchase)
+                                                            {
+                                                                case 1:
+                                                                    superdume.ListProducts();
+                                                                    Console.WriteLine("Select Product: ");
+                                                                    int productCode = int.Parse(Console.ReadLine());
+                                                                    
+                                                                    break;
+
+                                                                case 2:
+
+                                                                    break;
+
+                                                                case 0:
+
+                                                                    break;
+                                                            }
+                                                        } while (optionMakePurchase != 0);
+                                                        break;
+                                                    //WORKING ON THIS THING UP HERE
+
+                                                    case 2:
 
 
-                                                    break;
+                                                        break;
 
-                                                case 3:
-                                                    break;
+                                                    case 3:
+                                                        break;
 
-                                                case 0:
+                                                    case 0:
 
-                                                    break;
+                                                        break;
 
-                                            }
+                                                }
 
-                                        } while (optionClientActions != 0);
-                                        break;
+                                            } while (optionClientActions != 0);
+                                            break;
+                                        }
 
                                     case 0:
 
