@@ -53,6 +53,7 @@ namespace PP_TP
                 Utils.PrintError("No clients found!");
             }
         }
+
         public void DeleteProduct(Product p)
         {
             Stock.Remove(p);   

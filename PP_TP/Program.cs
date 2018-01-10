@@ -18,7 +18,6 @@ namespace PP_TP
             int optionStockManager = -1;
             int optionClientsManager = -1;
             int optionClientActions = -1;
-            int optionMakePurchase = -1;
             do
             {
                 Console.WriteLine("----------:.SuPeRDuMe.:-------");
@@ -123,8 +122,14 @@ namespace PP_TP
                                     case 3:
                                         {
                                             //Choose Client
-                                            Console.WriteLine("Choose a client: ");
-                                            string NIF = Console.ReadLine();
+                                            Client cc;
+                                            do
+                                            {
+                                                Console.WriteLine("Choose a client: ");
+                                                cc = CheckClientExists(superdume, Console.ReadLine());
+                                                if (cc == null)
+                                                    Console.WriteLine("Incorrect CC/Client doest not exist.");
+                                            } while (cc == null);
 
                                             // Client Actions
                                             do
@@ -143,41 +148,11 @@ namespace PP_TP
                                                 {
                                                     // STILL WORKING ON THIS DOWN HERE!! by Francisco
                                                     case 1:
-                                                        List<Product> cart = new List<Product>();
-                                                        do
-                                                        {
-                                                            Console.WriteLine("--------------------------");
-                                                            Console.WriteLine("1 - Add Product to Shopping Cart");
-                                                            Console.WriteLine("2 - Shopping Cart");
-                                                            Console.WriteLine("0 - Back");
-                                                            Console.WriteLine("--------------------------");
-                                                            Console.WriteLine("Input option:");
-
-                                                            optionMakePurchase = int.Parse(Console.ReadLine());
-
-                                                            switch (optionMakePurchase)
-                                                            {
-                                                                case 1:
-                                                                    superdume.ListProducts();
-                                                                    Console.WriteLine("Select Product: ");
-                                                                    int productCode = int.Parse(Console.ReadLine());
-                                                                    
-                                                                    break;
-
-                                                                case 2:
-
-                                                                    break;
-
-                                                                case 0:
-
-                                                                    break;
-                                                            }
-                                                        } while (optionMakePurchase != 0);
+                                                        MakePurchase(superdume, cc);
                                                         break;
                                                     //WORKING ON THIS THING UP HERE
 
                                                     case 2:
-
 
                                                         break;
 
@@ -354,6 +329,8 @@ namespace PP_TP
 
         #endregion ProductManagment
 
+        #region ClientManagement
+
         //Function to check for Id cards already made
         public static Client CheckClientExists(SuperDume s, string cc)
         {
@@ -409,10 +386,57 @@ namespace PP_TP
             {
                 Console.WriteLine("Client already exists");
             }
-
-
-
         }
 
+        #endregion ClientManagement
+
+        public static void MakePurchase(SuperDume s, Client c)
+        {
+            int optionMakePurchase = -1;
+            Product productCode;
+            List<Product> cart = new List<Product>();
+            do
+            {
+                Console.WriteLine("--------------------------");
+                Console.WriteLine("1 - Add Product to Shopping Cart");
+                Console.WriteLine("2 - Shopping Cart");
+                Console.WriteLine("3 - List Products");
+                Console.WriteLine("4 - End purchase");
+                Console.WriteLine("0 - Back");
+                Console.WriteLine("--------------------------");
+                Console.WriteLine("Input option:");
+
+                optionMakePurchase = int.Parse(Console.ReadLine());
+
+                switch (optionMakePurchase)
+                {
+                    
+                    case 1:
+                        {
+                            do
+                            {
+                                Console.WriteLine("Select Product: ");
+                                productCode = CheckProductExists(s, int.Parse(Console.ReadLine()));
+                                if (productCode == null)
+                                    Console.WriteLine("Wrong code/Product does not exist");
+                            } while (productCode == null);
+                            cart.Add(productCode);
+                        }
+
+                        break;
+
+                    case 2:
+
+                        break;
+                    case 3:
+                        s.ListProducts();
+                        break;
+
+                    case 0:
+
+                        break;
+                }
+            } while (optionMakePurchase != 0);
+        }
     }
 }
