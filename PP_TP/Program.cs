@@ -11,15 +11,12 @@ namespace PP_TP
         static void Main(string[] args)
         {
             Console.ForegroundColor = System.ConsoleColor.Green;
-
             SuperDume superdume = new SuperDume();
 
             int option = -1;
             int optionStockManager = -1;
-            int optionClientsManager = -1;
-            int optionClientActions = -1;
-            do
-            {
+
+            do {
                 Console.WriteLine("----------:.SuPeRDuMe.:-------");
                 Console.WriteLine("1 - Stock Manager");
                 Console.WriteLine("2 - Client Manager");
@@ -30,16 +27,13 @@ namespace PP_TP
                 Console.WriteLine("Input option:");
 
                 option = int.Parse(Console.ReadLine());
-                
 
                 switch (option)
                 {
                     case 1:
                         {
                             // stock manager
-                            
-                            do
-                            {
+                            do {
                                 Console.WriteLine("--------------------------");
                                 Console.WriteLine("1 - List Products");
                                 Console.WriteLine("2 - Add New Product");
@@ -83,100 +77,13 @@ namespace PP_TP
                                         break;
 
                                 }
-
                             } while (optionStockManager != 0);
 
                             break;
                         }
                     case 2:
                         {
-                            // Client Manager
-
-                            do
-                            {
-                                Console.WriteLine("--------------------------");
-                                Console.WriteLine("1 - Add New Client");
-                                Console.WriteLine("2 - List Clients");
-                                Console.WriteLine("3 - Client Actions");
-                                Console.WriteLine("0 - Back");
-                                Console.WriteLine("--------------------------");
-                                Console.WriteLine("Input option:");
-
-                                optionClientsManager = int.Parse(Console.ReadLine());
-
-                                switch (optionClientsManager)
-                                {
-                                    case 1:
-                                        // Add new client
-
-                                        AddClient(superdume);
-
-                                        break;
-
-                                    case 2:
-                                        //List Clients
-                                        superdume.ListClients();
-
-                                        break;
-
-                                    case 3:
-                                        {
-                                            //Choose Client
-                                            Client cc;
-                                            do
-                                            {
-                                                Console.WriteLine("Choose a client: ");
-                                                cc = CheckClientExists(superdume, Console.ReadLine());
-                                                if (cc == null)
-                                                    Console.WriteLine("Incorrect CC/Client doest not exist.");
-                                            } while (cc == null);
-
-                                            // Client Actions
-                                            do
-                                            {
-                                                Console.WriteLine("--------------------------");
-                                                Console.WriteLine("1 - Make Purchase");
-                                                Console.WriteLine("2 - List Purchases");
-                                                Console.WriteLine("3 - Check Balance");
-                                                Console.WriteLine("0 - Back");
-                                                Console.WriteLine("--------------------------");
-                                                Console.WriteLine("Input option:");
-
-                                                optionClientActions = int.Parse(Console.ReadLine());
-
-                                                switch (optionClientActions)
-                                                {
-                                                    // STILL WORKING ON THIS DOWN HERE!! by Francisco
-                                                    case 1:
-                                                        MakePurchase(superdume, cc);
-                                                        break;
-                                                    //WORKING ON THIS THING UP HERE
-
-                                                    case 2:
-
-                                                        break;
-
-                                                    case 3:
-                                                        break;
-
-                                                    case 0:
-
-                                                        break;
-
-                                                }
-
-                                            } while (optionClientActions != 0);
-                                            break;
-                                        }
-
-                                    case 0:
-
-                                        break;
-
-                                }
-
-                            } while (optionClientsManager != 0);
-
+                            ClientManagerMenu(superdume);
                             break;
 
                         }
@@ -184,7 +91,6 @@ namespace PP_TP
                         {
 
                             break;
-
                         }
                     case 4:
                         {
@@ -195,7 +101,6 @@ namespace PP_TP
                 };
 
             } while (option != 0);
-
         }
 
         #region ProductManagement
@@ -312,7 +217,7 @@ namespace PP_TP
 
             Product product = CheckProductExists(s, inputedCode);
 
-            if(product != null)
+            if (product != null)
             {
                 s.DeleteProduct(product);
 
@@ -348,6 +253,96 @@ namespace PP_TP
                 }
             }
             return null;
+        }
+
+        // Client Manager
+        public static void ClientManagerMenu(SuperDume superdume) {
+            int optionClientsManager = -1;
+
+            do
+            {
+                Console.WriteLine("--------------------------");
+                Console.WriteLine("1 - Add New Client");
+                Console.WriteLine("2 - List Clients");
+                Console.WriteLine("3 - Client Actions");
+                Console.WriteLine("0 - Back");
+                Console.WriteLine("--------------------------");
+                Console.WriteLine("Input option:");
+
+                optionClientsManager = int.Parse(Console.ReadLine());
+
+                switch (optionClientsManager)
+                {
+                    case 1:
+                        // Add new client
+
+                        AddClient(superdume);
+
+                        break;
+
+                    case 2:
+                        //List Clients
+                        superdume.ListClients();
+
+                        break;
+
+                    case 3:
+                        {
+                            ChooseClientMenu(superdume);
+                            break;
+                        }
+
+                    case 0:
+
+                        break;
+
+                }
+
+            } while (optionClientsManager != 0);
+        }
+
+        //Choose Client
+        public static void ChooseClientMenu(SuperDume superdume) {
+            int optionClientActions = -1;
+            Client cc;
+
+            Console.WriteLine("Choose a client: ");
+            cc = CheckClientExists(superdume, Console.ReadLine());
+            if (cc == null)
+                Console.WriteLine("Incorrect CC/Client doest not exist.");
+            else
+            {
+                // Client Actions
+                do
+                {
+                    Console.WriteLine("--------------------------");
+                    Console.WriteLine("1 - Make Purchase");
+                    Console.WriteLine("2 - List Purchases");
+                    Console.WriteLine("3 - Check Balance");
+                    Console.WriteLine("0 - Back");
+                    Console.WriteLine("--------------------------");
+                    Console.WriteLine("Input option:");
+
+                    optionClientActions = int.Parse(Console.ReadLine());
+
+                    switch (optionClientActions)
+                    {
+                        // STILL WORKING ON THIS DOWN HERE!! by Francisco
+                        case 1:
+                            MakePurchase(superdume, cc);
+                            break;
+                        //WORKING ON THIS THING UP HERE
+
+                        case 2:
+                            break;
+
+                        case 3:
+                            break;
+
+                    }
+
+                } while (optionClientActions != 0);
+            }
         }
 
         //Adds clients
@@ -392,7 +387,8 @@ namespace PP_TP
 
         public static void MakePurchase(SuperDume s, Client c)
         {
-            int optionMakePurchase = -1;
+            int optionMakePurchase = -1, accPoints, nItems = 0;
+            float pTotal = 0;
             Product productCode;
             List<Product> cart = new List<Product>();
             do
@@ -413,27 +409,26 @@ namespace PP_TP
                     
                     case 1:
                         {
-                            do
-                            {
-                                Console.WriteLine("Select Product: ");
-                                productCode = CheckProductExists(s, int.Parse(Console.ReadLine()));
-                                if (productCode == null)
-                                    Console.WriteLine("Wrong code/Product does not exist");
-                            } while (productCode == null);
-                            cart.Add(productCode);
+                            Console.WriteLine("Select Product: ");
+                            productCode = CheckProductExists(s, int.Parse(Console.ReadLine()));
+                            if (productCode == null)
+                                Console.WriteLine("Wrong code/Product does not exist");
+                            else {
+                                cart.Add(productCode);
+                                pTotal += productCode.Price;
+                                nItems += 1;
+                                productCode.Quantity -= 1;
+                            }
                         }
-
                         break;
-
                     case 2:
-
+                        s.ListShoppingCart(cart);
                         break;
                     case 3:
                         s.ListProducts();
                         break;
-
-                    case 0:
-
+                    case 4:
+                        s.MakePurchase(c, cart, "", nItems, pTotal);
                         break;
                 }
             } while (optionMakePurchase != 0);

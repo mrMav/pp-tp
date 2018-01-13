@@ -17,12 +17,12 @@ namespace PP_TP
 
         public void Purchases(List<Product> products, string desc, int quant, float pTotal, int accPoints)
         {
+            this.Products = products;
             this.Description = desc;
             this.PurchaseDate = DateTime.Now;
             this.Quantity = quant;
             this.PurchaseTotal = pTotal;
             this.AccumulatedPoints = accPoints;
-
         }
 
     }

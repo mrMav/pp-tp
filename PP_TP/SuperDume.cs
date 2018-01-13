@@ -39,6 +39,20 @@ namespace PP_TP
                 Utils.PrintError("No products found!");
             }
         }
+        public void ListShoppingCart(List<Product> cart)
+        {
+            if (cart.Count > 0)
+            {
+                foreach (Product p in cart)
+                {
+                    Console.WriteLine(p);
+                }
+            }
+            else
+            {
+                Utils.PrintError("Shopping Cart is empty!");
+            }
+        }
         public void ListClients()
         {
             if (Clients.Count > 0)
@@ -62,6 +76,15 @@ namespace PP_TP
         public void AddClient(string name, string adress, string phoneNumber, string email, string cc, string nif)
         {
            Clients.Add(new Client(name, adress, phoneNumber, email, cc, nif));
+        }
+
+        public void MakePurchase(Client c, List<Product> cart, string desc, int quant, float pTotal)
+        {
+            int accPoints;
+
+            accPoints = (int)Math.Floor(pTotal % 50);
+            c.Card.Purchases.Add(new Purchase(cart, "teste", quant, pTotal, accPoints));
+            c.Card.CardPoints += accPoints;
         }
     }
 }
