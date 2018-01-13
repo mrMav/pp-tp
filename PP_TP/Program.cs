@@ -428,6 +428,7 @@ namespace PP_TP
                         s.ListProducts();
                         break;
                     case 4:
+                        //BUG HERE (CHECK SUPERDUME CLASS)!!!!!!!1
                         s.MakePurchase(c, cart, "", nItems, pTotal);
                         break;
                 }

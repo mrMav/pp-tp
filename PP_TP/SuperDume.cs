@@ -82,6 +82,7 @@ namespace PP_TP
         {
             int accPoints;
 
+            //BUG HERE??
             accPoints = (int)Math.Floor(pTotal % 50);
             c.Card.Purchases.Add(new Purchase(cart, "teste", quant, pTotal, accPoints));
             c.Card.CardPoints += accPoints;
