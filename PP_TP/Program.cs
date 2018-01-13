@@ -387,7 +387,7 @@ namespace PP_TP
 
         public static void MakePurchase(SuperDume s, Client c)
         {
-            int optionMakePurchase = -1, accPoints, nItems = 0;
+            int optionMakePurchase = -1, nItems = 0;
             float pTotal = 0;
             Product productCode;
             List<Product> cart = new List<Product>();
