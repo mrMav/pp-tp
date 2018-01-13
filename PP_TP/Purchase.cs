@@ -15,7 +15,7 @@ namespace PP_TP
         public float PurchaseTotal { get; set; }
         public int AccumulatedPoints { get; set; }
 
-        public void Purchases(List<Product> products, string desc, int quant, float pTotal, int accPoints)
+        public Purchase(List<Product> products, string desc, int quant, float pTotal, int accPoints)
         {
             this.Products = products;
             this.Description = desc;

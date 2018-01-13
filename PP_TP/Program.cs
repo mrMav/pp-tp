@@ -309,7 +309,7 @@ namespace PP_TP
             Console.WriteLine("Choose a client: ");
             cc = CheckClientExists(superdume, Console.ReadLine());
             if (cc == null)
-                Console.WriteLine("Incorrect CC/Client doest not exist.");
+                Utils.PrintError("Incorrect CC/Client doest not exist.");
             else
             {
                 // Client Actions
@@ -327,13 +327,11 @@ namespace PP_TP
 
                     switch (optionClientActions)
                     {
-                        // STILL WORKING ON THIS DOWN HERE!! by Francisco
                         case 1:
                             MakePurchase(superdume, cc);
                             break;
-                        //WORKING ON THIS THING UP HERE
-
                         case 2:
+                            superdume.ListPurchases(cc);
                             break;
 
                         case 3:
@@ -388,6 +386,7 @@ namespace PP_TP
         public static void MakePurchase(SuperDume s, Client c)
         {
             int optionMakePurchase = -1, nItems = 0;
+            bool canAdd = true;
             float pTotal = 0;
             Product productCode;
             List<Product> cart = new List<Product>();
@@ -405,19 +404,35 @@ namespace PP_TP
                 optionMakePurchase = int.Parse(Console.ReadLine());
 
                 switch (optionMakePurchase)
-                {
-                    
+                {   
                     case 1:
                         {
                             Console.WriteLine("Select Product: ");
                             productCode = CheckProductExists(s, int.Parse(Console.ReadLine()));
                             if (productCode == null)
-                                Console.WriteLine("Wrong code/Product does not exist");
+                                Utils.PrintError("Wrong code/Product does not exist");
                             else {
-                                cart.Add(productCode);
-                                pTotal += productCode.Price;
-                                nItems += 1;
-                                productCode.Quantity -= 1;
+                                if (productCode.Quantity >= 1)
+                                {
+                                    foreach (Product p in cart)
+                                    {
+                                        if (productCode.Code == p.Code)
+                                        {
+                                            p.Quantity += 1;
+                                            canAdd = false;
+                                        }
+                                        else
+                                            canAdd = true;
+                                    }
+                                    if (canAdd == true)
+                                        cart.Add(new Product(productCode.Code, productCode.Description, productCode.Price, 1));
+
+                                    pTotal += productCode.Price;
+                                    nItems += 1;
+                                    productCode.Quantity -= 1;
+                                }
+                                else
+                                    Utils.PrintError("Out of stock!");
                             }
                         }
                         break;
@@ -428,8 +443,14 @@ namespace PP_TP
                         s.ListProducts();
                         break;
                     case 4:
-                        //BUG HERE (CHECK SUPERDUME CLASS)!!!!!!!1
-                        s.MakePurchase(c, cart, "", nItems, pTotal);
+                        {
+                            if (nItems != 0) {
+                                s.MakePurchase(c, cart, "", nItems, pTotal);
+                                optionMakePurchase = 0;
+                            }
+                            else
+                                Utils.PrintError("Shopping Cart is empty!");
+                        }
                         break;
                 }
             } while (optionMakePurchase != 0);
