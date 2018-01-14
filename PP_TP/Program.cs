@@ -348,7 +348,7 @@ namespace PP_TP
             }
             else
             {
-                Console.WriteLine("Client already exists");
+                Utils.PrintError("Client already exists");
             }
         }
 

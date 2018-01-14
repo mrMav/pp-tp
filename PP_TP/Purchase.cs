@@ -28,7 +28,7 @@ namespace PP_TP
 
         public override string ToString()
         {
-            string text = "\nDesc: " + this.Description + ", Purchase Date: " + this.PurchaseDate + ", Quantity: " + this.Quantity + ", Total: " + this.PurchaseTotal + ", Accumulated Points: " + this.AccumulatedPoints + "\nProdutos:";
+            string text = "\nDesc: " + this.Description + ", Quantity: " + this.Quantity + ", Total: " + this.PurchaseTotal + "€, Accumulated Points: " + this.AccumulatedPoints + ",\nPurchase Date: " + this.PurchaseDate + "\nProdutos:";
 
             if (this.Products.Count > 0)
             {

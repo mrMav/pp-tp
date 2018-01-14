@@ -37,7 +37,7 @@ namespace PP_TP
             }
             else
             {
-                Utils.PrintError("No products found!");
+                Utils.PrintError("No products found.");
             }
         }
         public void ListShoppingCart(List<Product> cart)
@@ -51,7 +51,7 @@ namespace PP_TP
             }
             else
             {
-                Utils.PrintError("Shopping Cart is empty!");
+                Utils.PrintError("Shopping Cart is empty.");
             }
         }
         public void ListClients()
@@ -65,7 +65,7 @@ namespace PP_TP
             }
             else
             {
-                Utils.PrintError("No clients found!");
+                Utils.PrintError("No clients found.");
             }
         }
         public void ListPurchases(ClientCard card)
@@ -79,7 +79,7 @@ namespace PP_TP
             }
             else
             {
-                Utils.PrintError("No purchases were made!");
+                Utils.PrintError("No purchases were made.");
             }
         }
 

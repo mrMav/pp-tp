@@ -18,7 +18,5 @@ namespace PP_TP
             this.Purchases = new List<Purchase>();
             this.CardPoints = 0;
         }
-        
-
     }
 }
