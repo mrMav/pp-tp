@@ -94,7 +94,6 @@ namespace PP_TP
            Clients.Add(new Client(name, adress, phoneNumber, email, cc, nif));
         }
 
-        //BUG HERE
         public void MakePurchase(Client c, List<Product> cart, string desc, int quant, float pTotal)
         {
             int accPoints;
@@ -102,6 +101,15 @@ namespace PP_TP
             accPoints = (int)Math.Floor(pTotal / 50);
             c.Card.Purchases.Add(new Purchase(cart, desc, quant, pTotal, accPoints));
             c.Card.CardPoints += accPoints;
+        }
+
+        public void CheckBalance(ClientCard cc) {
+            float total = 0;
+
+            foreach (Purchase p in cc.Purchases)
+                total += p.PurchaseTotal;
+
+            Console.WriteLine("Total spent: " + total + ", Points in Card: " + cc.CardPoints);
         }
     }
 }

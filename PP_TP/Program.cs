@@ -412,6 +412,7 @@ namespace PP_TP
                             superdume.ListPurchases(cc.Card);
                             break;
                         case 3:
+                            superdume.CheckBalance(cc.Card);
                             break;
 
                     }
