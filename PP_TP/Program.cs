@@ -20,7 +20,7 @@ namespace PP_TP
 
             do
             {
-                Console.WriteLine("----------:.SuPeRDuMe.:-------");
+                Console.WriteLine("-------:.SuPeRDuMe.:------");
                 Console.WriteLine("1 - Stock Manager");
                 Console.WriteLine("2 - Client Manager");
                 Console.WriteLine("3 - Save Data");
