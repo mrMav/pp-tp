@@ -108,7 +108,7 @@ namespace PP_TP
                             superdume = ReadBinFile(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\superdume.bin");
                             if (superdume == null)
                             {
-                                Utils.PrintError("There is no saved data");
+                                Utils.PrintError("There is no saved data.");
                                 superdume = new SuperDume();
                             }
                             
@@ -182,7 +182,7 @@ namespace PP_TP
             else
             {
 
-                Utils.PrintError("Product code already in use!");
+                Utils.PrintError("Product code already in use.");
 
             }
         }
@@ -273,47 +273,6 @@ namespace PP_TP
             return null;
         }
 
-        //Choose Client
-        public static void ChooseClientMenu(SuperDume superdume)
-        {
-            int optionClientActions = -1;
-            Client cc;
-
-            Console.WriteLine("Choose a client: ");
-            cc = CheckClientExists(superdume, Console.ReadLine());
-            if (cc == null)
-                Utils.PrintError("Incorrect CC/Client doest not exist.");
-            else
-            {
-                // Client Actions
-                do
-                {
-                    Console.WriteLine("--------------------------");
-                    Console.WriteLine("1 - Make Purchase");
-                    Console.WriteLine("2 - List Purchases");
-                    Console.WriteLine("3 - Check Balance");
-                    Console.WriteLine("0 - Back");
-                    Console.WriteLine("--------------------------");
-                    Console.WriteLine("Input option:");
-
-                    optionClientActions = int.Parse(Console.ReadLine());
-
-                    switch (optionClientActions)
-                    {
-                        case 1:
-                            MakePurchase(superdume, cc);
-                            break;
-                        case 2:
-                            superdume.ListPurchases(cc.Card);
-                            break;
-                        case 3:
-                            break;
-
-                    }
-                } while (optionClientActions != 0);
-            }
-        }
-
         //Adds clients
         public static void AddClient(SuperDume s)
         {
@@ -348,11 +307,9 @@ namespace PP_TP
             }
             else
             {
-                Utils.PrintError("Client already exists");
+                Utils.PrintError("Client already exists.");
             }
         }
-
-        #endregion ClientManagement
 
         // Client Manager
         public static void ClientManagerMenu(SuperDume superdume)
@@ -401,6 +358,49 @@ namespace PP_TP
             } while (optionClientsManager != 0);
         }
 
+        //Choose Client
+        public static void ChooseClientMenu(SuperDume superdume)
+        {
+            int optionClientActions = -1;
+            Client cc;
+
+            Console.WriteLine("Choose a client: ");
+            cc = CheckClientExists(superdume, Console.ReadLine());
+            if (cc == null)
+                Utils.PrintError("Incorrect CC/Client doest not exist.");
+            else
+            {
+                // Client Actions
+                do
+                {
+                    Console.WriteLine("--------------------------");
+                    Console.WriteLine("1 - Make Purchase");
+                    Console.WriteLine("2 - List Purchases");
+                    Console.WriteLine("3 - Check Balance");
+                    Console.WriteLine("0 - Back");
+                    Console.WriteLine("--------------------------");
+                    Console.WriteLine("Input option:");
+
+                    optionClientActions = int.Parse(Console.ReadLine());
+
+                    switch (optionClientActions)
+                    {
+                        case 1:
+                            MakePurchase(superdume, cc);
+                            break;
+                        case 2:
+                            superdume.ListPurchases(cc.Card);
+                            break;
+                        case 3:
+                            break;
+
+                    }
+                } while (optionClientActions != 0);
+            }
+        }
+
+        #endregion ClientManagement
+
         public static void MakePurchase(SuperDume s, Client c)
         {
             bool canAdd = true;
@@ -428,7 +428,7 @@ namespace PP_TP
                         Console.WriteLine("Select Product: ");
                         productCode = CheckProductExists(s, int.Parse(Console.ReadLine()));
                         if (productCode == null)
-                            Utils.PrintError("Wrong code/Product does not exist");
+                            Utils.PrintError("Product does not exist.");
                         else
                         {
                             if (productCode.Quantity >= 1)
@@ -449,7 +449,7 @@ namespace PP_TP
                                 productCode.Quantity -= 1;
                             }
                             else
-                                Utils.PrintError("Out of stock!");
+                                Utils.PrintError("Out of stock.");
                         }
                         break;
                     case 2:
@@ -466,7 +466,7 @@ namespace PP_TP
                                 optionMakePurchase = 0;
                             }
                             else
-                                Utils.PrintError("Shopping Cart is empty!");
+                                Utils.PrintError("Shopping Cart is empty.");
                         }
                         break;
                 }
@@ -474,32 +474,32 @@ namespace PP_TP
         }
 
         //Save data to .bin file
-
-        //If file already exists it will be replaced with the newer version
-
-        //ERROR STARTING HERE!!!!!!!!!!!!!
-        public static void WriteBinFile<SuperDume>(SuperDume s, string caminhoFicheiro, bool append = false)
+        public static void WriteBinFile(SuperDume s, string filePath, bool append = false)
         {
-                using (Stream stream = File.Open(caminhoFicheiro, append ? FileMode.Append : FileMode.Create))
+            if (s.Stock.Count > 0 || s.Clients.Count > 0)
+                //If file already exists it will be replaced with the newer version
+                using (Stream stream = File.Open(filePath, append ? FileMode.Append : FileMode.Create))
                 {
                     var binaryFormatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
                     binaryFormatter.Serialize(stream, s);
                 }
+            else
+                Utils.PrintError("There's no data.");
 
         }
 
-        static SuperDume ReadBinFile(string caminhoFicheiro)
+        //Loads.bin file
+        static SuperDume ReadBinFile(string filePath)
         {
             SuperDume s = null;
-            if (File.Exists(caminhoFicheiro))
+            if (File.Exists(filePath))
             {
-                Stream stream = File.Open(caminhoFicheiro, FileMode.Open);
+                Stream stream = File.Open(filePath, FileMode.Open);
                 BinaryFormatter bf = new BinaryFormatter();
                 s = (SuperDume)bf.Deserialize(stream);
                 stream.Close();
             }
             return s;
         }
-
     }
 }

@@ -99,7 +99,7 @@ namespace PP_TP
         {
             int accPoints;
 
-            accPoints = (int)Math.Floor(pTotal % 50);
+            accPoints = (int)Math.Floor(pTotal / 50);
             c.Card.Purchases.Add(new Purchase(cart, desc, quant, pTotal, accPoints));
             c.Card.CardPoints += accPoints;
         }
