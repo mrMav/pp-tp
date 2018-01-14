@@ -32,7 +32,7 @@ namespace PP_TP
             {
                 foreach(Product p in Stock)
                 {
-                    Console.WriteLine(p);
+                    Utils.PrintListItem(p.ToString());
                 }
             }
             else
@@ -46,7 +46,7 @@ namespace PP_TP
             {
                 foreach (Product p in cart)
                 {
-                    Console.WriteLine(p);
+                    Utils.PrintListItem(p.ToString());
                 }
             }
             else
@@ -60,7 +60,7 @@ namespace PP_TP
             {
                 foreach (Client c in Clients)
                 {
-                    Console.WriteLine(c);
+                    Utils.PrintListItem(c.ToString());
                 }
             }
             else
@@ -74,7 +74,7 @@ namespace PP_TP
             {
                 foreach (Purchase p in card.Purchases)
                 {
-                    Console.WriteLine(p);
+                    Utils.PrintListItem(p.ToString());
                 }
             }
             else

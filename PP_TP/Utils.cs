@@ -20,5 +20,16 @@ namespace PP_TP
 
         }
 
+        public static void PrintListItem(string s)
+        {
+
+            Console.ForegroundColor = System.ConsoleColor.White;
+
+            Console.WriteLine(s);
+
+            Console.ForegroundColor = System.ConsoleColor.Green;
+
+        }
+
     }
 }
