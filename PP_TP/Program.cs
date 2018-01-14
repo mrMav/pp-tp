@@ -100,12 +100,12 @@ namespace PP_TP
                         }
                     case 3:
                         {
-                            WriteBinFile(superdume, @"..\..\..\data\save.bin");
+                            WriteBinFile(superdume, Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\superdume.bin");
                             break;
                         }
                     case 4:
                         {
-                            superdume = ReadBinFile(@"..\..\..\data\save.bin");
+                            superdume = ReadBinFile(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\superdume.bin");
                             if (superdume == null)
                             {
                                 Utils.PrintError("There is no saved data");
@@ -476,7 +476,6 @@ namespace PP_TP
         //Save data to .bin file
 
         //If file already exists it will be replaced with the newer version
-
 
         //ERROR STARTING HERE!!!!!!!!!!!!!
         public static void WriteBinFile<SuperDume>(SuperDume s, string caminhoFicheiro, bool append = false)

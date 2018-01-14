@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace PP_TP
 {
+    [Serializable]
     class SuperDume
     {
         public List<Client> Clients { get; set; }
