@@ -109,7 +109,7 @@ namespace PP_TP
             foreach (Purchase p in cc.Purchases)
                 total += p.PurchaseTotal;
 
-            Console.WriteLine("Total spent: " + total + ", Points in Card: " + cc.CardPoints);
+            Utils.PrintListItem("Total spent: " + total + " Euros, Points in Card: " + cc.CardPoints);
         }
     }
 }
