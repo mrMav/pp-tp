@@ -306,7 +306,6 @@ namespace PP_TP
                         case 2:
                             superdume.ListPurchases(cc.Card);
                             break;
-
                         case 3:
                             break;
 

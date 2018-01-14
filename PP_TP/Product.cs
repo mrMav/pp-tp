@@ -23,8 +23,7 @@ namespace PP_TP
 
         public override string ToString()
         {
-            return "Code: " + this.Code + ", Description: " + this.Description + ", Price: " + this.Price + ", Quantity: " + this.Quantity;
-            
+            return "Code: " + this.Code + ", Description: " + this.Description + ", Price: " + this.Price + ", Quantity: " + this.Quantity;     
         }
     }
 }

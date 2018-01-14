@@ -27,7 +27,16 @@ namespace PP_TP
 
         public override string ToString()
         {
-            return "Produtos: " + this.Products + ", Desc: " + this.Description + ", Purchase Date: " + this.PurchaseDate + ", Quantity: " + this.Quantity + ", Total: " + this.PurchaseTotal + ", Accumulated Points: " + this.AccumulatedPoints;
+            string text = "\nDesc: " + this.Description + ", Purchase Date: " + this.PurchaseDate + ", Quantity: " + this.Quantity + ", Total: " + this.PurchaseTotal + ", Accumulated Points: " + this.AccumulatedPoints + "\nProdutos:";
+
+            if (this.Products.Count > 0)
+            {
+                foreach (Product p in Products)
+                {
+                    text += ("\n" + p );
+                }
+            }
+            return text;
         }
     }
 }
