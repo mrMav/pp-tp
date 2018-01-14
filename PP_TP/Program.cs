@@ -118,7 +118,7 @@ namespace PP_TP
                                  * Adding some default clients and products
                                  */
 
-                                Utils.PrintEaster("You found our Easte Egg. Check clients and products.");
+                                Utils.PrintEaster("You found our Easter Egg! Check clients and products.");
 
                                 superdume.AddClient("Francisco Santos", "Braga", "915874156", "fsantos@superdume.com", "001", "001");
                                 superdume.AddClient("Pedro Fernandes", "Algures", "961813492", "pfernandes@superdume.com", "002", "002");
