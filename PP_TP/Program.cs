@@ -255,52 +255,6 @@ namespace PP_TP
             return null;
         }
 
-        // Client Manager
-        public static void ClientManagerMenu(SuperDume superdume) {
-            int optionClientsManager = -1;
-
-            do
-            {
-                Console.WriteLine("--------------------------");
-                Console.WriteLine("1 - Add New Client");
-                Console.WriteLine("2 - List Clients");
-                Console.WriteLine("3 - Client Actions");
-                Console.WriteLine("0 - Back");
-                Console.WriteLine("--------------------------");
-                Console.WriteLine("Input option:");
-
-                optionClientsManager = int.Parse(Console.ReadLine());
-
-                switch (optionClientsManager)
-                {
-                    case 1:
-                        // Add new client
-
-                        AddClient(superdume);
-
-                        break;
-
-                    case 2:
-                        //List Clients
-                        superdume.ListClients();
-
-                        break;
-
-                    case 3:
-                        {
-                            ChooseClientMenu(superdume);
-                            break;
-                        }
-
-                    case 0:
-
-                        break;
-
-                }
-
-            } while (optionClientsManager != 0);
-        }
-
         //Choose Client
         public static void ChooseClientMenu(SuperDume superdume) {
             int optionClientActions = -1;
@@ -382,6 +336,53 @@ namespace PP_TP
         }
 
         #endregion ClientManagement
+
+        // Client Manager
+        public static void ClientManagerMenu(SuperDume superdume)
+        {
+            int optionClientsManager = -1;
+
+            do
+            {
+                Console.WriteLine("--------------------------");
+                Console.WriteLine("1 - Add New Client");
+                Console.WriteLine("2 - List Clients");
+                Console.WriteLine("3 - Client Actions");
+                Console.WriteLine("0 - Back");
+                Console.WriteLine("--------------------------");
+                Console.WriteLine("Input option:");
+
+                optionClientsManager = int.Parse(Console.ReadLine());
+
+                switch (optionClientsManager)
+                {
+                    case 1:
+                        // Add new client
+
+                        AddClient(superdume);
+
+                        break;
+
+                    case 2:
+                        //List Clients
+                        superdume.ListClients();
+
+                        break;
+
+                    case 3:
+                        {
+                            ChooseClientMenu(superdume);
+                            break;
+                        }
+
+                    case 0:
+
+                        break;
+
+                }
+
+            } while (optionClientsManager != 0);
+        }
 
         public static void MakePurchase(SuperDume s, Client c)
         {
