@@ -1,0 +1,12 @@
+1.	Introdução
+		(porque fizemos o que fizemos)
+3.	Organização
+	(como nos organizamos? git)
+5.	Resultados
+	5.1	Requerimentos (enunciado)
+		explicar o que nos foi pedido
+	5.2 Abordagem
+		explicar como abordamos isso
+4. Manual
+	4.1 Navegação entre menus
+	4.2 Gerir stock
