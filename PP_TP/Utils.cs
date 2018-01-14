@@ -31,5 +31,16 @@ namespace PP_TP
 
         }
 
+        public static void PrintEaster(string s)
+        {
+
+            Console.ForegroundColor = System.ConsoleColor.Yellow;
+
+            Console.WriteLine(s);
+
+            Console.ForegroundColor = System.ConsoleColor.Green;
+
+        }
+
     }
 }

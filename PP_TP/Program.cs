@@ -14,7 +14,7 @@ namespace PP_TP
         {
             Console.ForegroundColor = System.ConsoleColor.Green;
             SuperDume superdume = new SuperDume();
-
+            
             int option = -1;
             int optionStockManager = -1;
 
@@ -108,8 +108,28 @@ namespace PP_TP
                             superdume = ReadBinFile(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\superdume.bin");
                             if (superdume == null)
                             {
+
                                 Utils.PrintError("There is no saved data.");
+
                                 superdume = new SuperDume();
+
+                                /* Easter Egg
+                                 * 
+                                 * Adding some default clients and products
+                                 */
+
+                                Utils.PrintEaster("You found our Easte Egg. Check clients and products.");
+
+                                superdume.AddClient("Francisco Santos", "Braga", "915874156", "fsantos@superdume.com", "001", "001");
+                                superdume.AddClient("Pedro Fernandes", "Algures", "961813492", "pfernandes@superdume.com", "002", "002");
+                                superdume.AddClient("Jorge Noro", "Viana", "935814921", "jnoro@superdume.com", "003", "003");
+
+                                superdume.AddProduct(123, "Potatoes", 0.99f, 250);
+                                superdume.AddProduct(124, "Ham", 1.99f, 100);
+                                superdume.AddProduct(125, "Cheese", 5.41f, 100);
+                                superdume.AddProduct(126, "Gold", 100.0f, 5);
+                                superdume.AddProduct(127, "Easter Egg", 500.0f, 1);
+
                             }
                             
                             break;
