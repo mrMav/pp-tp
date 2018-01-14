@@ -100,13 +100,12 @@ namespace PP_TP
                         }
                     case 3:
                         {
-                            WriteBinFile(superdume, Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\save.bin");
+                            WriteBinFile(superdume, Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\superdume.bin");
                             break;
                         }
                     case 4:
                         {
-                            Console.WriteLine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\save.bin");
-                            superdume = ReadBinFile(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\save.bin");
+                            superdume = ReadBinFile(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\superdume.bin");
                             if (superdume == null)
                             {
                                 Utils.PrintError("There is no saved data");
