@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace PP_TP
 {
+    [Serializable]
     public class Client
     {
         public string Name { get; set; }

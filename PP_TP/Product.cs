@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace PP_TP
 {
+    [Serializable]
     public class Product
     {
          public int Code { get; set; }

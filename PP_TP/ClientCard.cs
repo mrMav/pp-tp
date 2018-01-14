@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace PP_TP
 {
+    [Serializable]
     public class ClientCard
     {
         public List<Purchase> Purchases { get; set; }
