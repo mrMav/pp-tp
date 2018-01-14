@@ -67,11 +67,11 @@ namespace PP_TP
                 Utils.PrintError("No clients found!");
             }
         }
-        public void ListPurchases(Client cc)
+        public void ListPurchases(ClientCard card)
         {
-            if (cc.Card.Purchases != null)
+            if (card.Purchases.Count > 0)
             {
-                foreach (Purchase p in cc.Card.Purchases)
+                foreach (Purchase p in card.Purchases)
                 {
                     Console.WriteLine(p);
                 }
@@ -84,7 +84,8 @@ namespace PP_TP
 
         public void DeleteProduct(Product p)
         {
-            Stock.Remove(p);   
+            Stock.Remove(p);
+            Console.WriteLine("Product deleted.");
         }
 
         public void AddClient(string name, string adress, string phoneNumber, string email, string cc, string nif)
@@ -98,7 +99,7 @@ namespace PP_TP
             int accPoints;
 
             accPoints = (int)Math.Floor(pTotal % 50);
-            c.Card.Purchases.Add(new Purchase(cart, "", quant, pTotal, accPoints));
+            c.Card.Purchases.Add(new Purchase(cart, desc, quant, pTotal, accPoints));
             c.Card.CardPoints += accPoints;
         }
     }

@@ -25,5 +25,9 @@ namespace PP_TP
             this.AccumulatedPoints = accPoints;
         }
 
+        public override string ToString()
+        {
+            return "Produtos: " + this.Products + ", Desc: " + this.Description + ", Purchase Date: " + this.PurchaseDate + ", Quantity: " + this.Quantity + ", Total: " + this.PurchaseTotal + ", Accumulated Points: " + this.AccumulatedPoints;
+        }
     }
 }

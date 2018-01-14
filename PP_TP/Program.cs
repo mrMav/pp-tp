@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,7 +18,8 @@ namespace PP_TP
             int option = -1;
             int optionStockManager = -1;
 
-            do {
+            do
+            {
                 Console.WriteLine("----------:.SuPeRDuMe.:-------");
                 Console.WriteLine("1 - Stock Manager");
                 Console.WriteLine("2 - Client Manager");
@@ -33,7 +36,8 @@ namespace PP_TP
                     case 1:
                         {
                             // stock manager
-                            do {
+                            do
+                            {
                                 Console.WriteLine("--------------------------");
                                 Console.WriteLine("1 - List Products");
                                 Console.WriteLine("2 - Add New Product");
@@ -71,10 +75,17 @@ namespace PP_TP
                                         break;
 
                                     case 4:
+                                        { // delete product
+                                            Product p;
 
-                                        // delete product
-
-                                        break;
+                                            Console.WriteLine("Select Product: ");
+                                            p = CheckProductExists(superdume, int.Parse(Console.ReadLine()));
+                                            if (p == null)
+                                                Utils.PrintError("Wrong code/Product does not exist");
+                                            else
+                                                superdume.DeleteProduct(p);
+                                            break;
+                                        }
 
                                 }
                             } while (optionStockManager != 0);
@@ -89,12 +100,18 @@ namespace PP_TP
                         }
                     case 3:
                         {
-
+                            WriteBinFile(superdume, @"..\..\..\data\save.bin");
                             break;
                         }
                     case 4:
                         {
-
+                            superdume = ReadBinFile(@"..\..\..\data\save.bin");
+                            if (superdume == null)
+                            {
+                                Utils.PrintError("There is no saved data");
+                                superdume = new SuperDume();
+                            }
+                            
                             break;
                         }
                     case 0: break;
@@ -223,7 +240,8 @@ namespace PP_TP
 
                 Console.WriteLine("Product removed sucessfully.");
 
-            } else
+            }
+            else
             {
 
                 Utils.PrintError("Specified code not found in stock!\nNothing happened.");
@@ -256,7 +274,8 @@ namespace PP_TP
         }
 
         //Choose Client
-        public static void ChooseClientMenu(SuperDume superdume) {
+        public static void ChooseClientMenu(SuperDume superdume)
+        {
             int optionClientActions = -1;
             Client cc;
 
@@ -285,14 +304,13 @@ namespace PP_TP
                             MakePurchase(superdume, cc);
                             break;
                         case 2:
-                            superdume.ListPurchases(cc);
+                            superdume.ListPurchases(cc.Card);
                             break;
 
                         case 3:
                             break;
 
                     }
-
                 } while (optionClientActions != 0);
             }
         }
@@ -386,9 +404,10 @@ namespace PP_TP
 
         public static void MakePurchase(SuperDume s, Client c)
         {
-            int optionMakePurchase = -1, nItems = 0;
             bool canAdd = true;
+            int optionMakePurchase = -1, nItems = 0;
             float pTotal = 0;
+
             Product productCode;
             List<Product> cart = new List<Product>();
             do
@@ -405,36 +424,33 @@ namespace PP_TP
                 optionMakePurchase = int.Parse(Console.ReadLine());
 
                 switch (optionMakePurchase)
-                {   
+                {
                     case 1:
+                        Console.WriteLine("Select Product: ");
+                        productCode = CheckProductExists(s, int.Parse(Console.ReadLine()));
+                        if (productCode == null)
+                            Utils.PrintError("Wrong code/Product does not exist");
+                        else
                         {
-                            Console.WriteLine("Select Product: ");
-                            productCode = CheckProductExists(s, int.Parse(Console.ReadLine()));
-                            if (productCode == null)
-                                Utils.PrintError("Wrong code/Product does not exist");
-                            else {
-                                if (productCode.Quantity >= 1)
+                            if (productCode.Quantity >= 1)
+                            {
+                                foreach (Product p in cart)
                                 {
-                                    foreach (Product p in cart)
+                                    if (productCode.Code == p.Code)
                                     {
-                                        if (productCode.Code == p.Code)
-                                        {
-                                            p.Quantity += 1;
-                                            canAdd = false;
-                                        }
-                                        else
-                                            canAdd = true;
+                                        p.Quantity += 1;
+                                        canAdd = false;
                                     }
-                                    if (canAdd == true)
-                                        cart.Add(new Product(productCode.Code, productCode.Description, productCode.Price, 1));
-
-                                    pTotal += productCode.Price;
-                                    nItems += 1;
-                                    productCode.Quantity -= 1;
                                 }
-                                else
-                                    Utils.PrintError("Out of stock!");
+                                if (canAdd == true)
+                                    cart.Add(new Product(productCode.Code, productCode.Description, productCode.Price, 1));
+
+                                pTotal += productCode.Price;
+                                nItems += 1;
+                                productCode.Quantity -= 1;
                             }
+                            else
+                                Utils.PrintError("Out of stock!");
                         }
                         break;
                     case 2:
@@ -445,7 +461,8 @@ namespace PP_TP
                         break;
                     case 4:
                         {
-                            if (nItems != 0) {
+                            if (nItems > 0)
+                            {
                                 s.MakePurchase(c, cart, "", nItems, pTotal);
                                 optionMakePurchase = 0;
                             }
@@ -456,5 +473,35 @@ namespace PP_TP
                 }
             } while (optionMakePurchase != 0);
         }
+
+        //Save data to .bin file
+
+        //If file already exists it will be replaced with the newer version
+
+
+        //ERROR STARTING HERE!!!!!!!!!!!!!
+        public static void WriteBinFile<SuperDume>(SuperDume s, string caminhoFicheiro, bool append = false)
+        {
+                using (Stream stream = File.Open(caminhoFicheiro, append ? FileMode.Append : FileMode.Create))
+                {
+                    var binaryFormatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+                    binaryFormatter.Serialize(stream, s);
+                }
+
+        }
+
+        static SuperDume ReadBinFile(string caminhoFicheiro)
+        {
+            SuperDume s = null;
+            if (File.Exists(caminhoFicheiro))
+            {
+                Stream stream = File.Open(caminhoFicheiro, FileMode.Open);
+                BinaryFormatter bf = new BinaryFormatter();
+                s = (SuperDume)bf.Deserialize(stream);
+                stream.Close();
+            }
+            return s;
+        }
+
     }
 }
