@@ -22,7 +22,7 @@ namespace PP_TP
             this.Description = desc;
             this.PurchaseDate = DateTime.Now;
             this.Quantity = quant;
-            this.PurchaseTotal = pTotal;
+            this.PurchaseTotal = (float)Math.Round(pTotal, 2);
             this.AccumulatedPoints = accPoints;
         }
 

@@ -18,7 +18,7 @@ namespace PP_TP
         {
             this.Code = code;
             this.Description = desc;
-            this.Price = price;
+            this.Price = (float)Math.Round(price, 2);
             this.Quantity = quant;
         }
 

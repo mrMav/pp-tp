@@ -437,7 +437,8 @@ namespace PP_TP
                 Console.WriteLine("2 - Shopping Cart");
                 Console.WriteLine("3 - List Products");
                 Console.WriteLine("4 - End purchase");
-                Console.WriteLine("0 - Back");
+                if (cart.Count() == 0)
+                    Console.WriteLine("0 - Back");
                 Console.WriteLine("--------------------------");
                 Console.WriteLine("Input option:");
 
@@ -446,31 +447,34 @@ namespace PP_TP
                 switch (optionMakePurchase)
                 {
                     case 1:
-                        Console.WriteLine("Select Product: ");
-                        productCode = CheckProductExists(s, int.Parse(Console.ReadLine()));
-                        if (productCode == null)
-                            Utils.PrintError("Product does not exist.");
-                        else
                         {
-                            if (productCode.Quantity >= 1)
-                            {
-                                foreach (Product p in cart)
-                                {
-                                    if (productCode.Code == p.Code)
-                                    {
-                                        p.Quantity += 1;
-                                        canAdd = false;
-                                    }
-                                }
-                                if (canAdd == true)
-                                    cart.Add(new Product(productCode.Code, productCode.Description, productCode.Price, 1));
-
-                                pTotal += productCode.Price;
-                                nItems += 1;
-                                productCode.Quantity -= 1;
-                            }
+                            canAdd = true;
+                            Console.WriteLine("Select Product: ");
+                            productCode = CheckProductExists(s, int.Parse(Console.ReadLine()));
+                            if (productCode == null)
+                                Utils.PrintError("Product does not exist.");
                             else
-                                Utils.PrintError("Out of stock.");
+                            {
+                                if (productCode.Quantity >= 1)
+                                {
+                                    foreach (Product p in cart)
+                                    {
+                                        if (productCode.Code == p.Code)
+                                        {
+                                            p.Quantity += 1;
+                                            canAdd = false;
+                                        }
+                                    }
+                                    if (canAdd == true)
+                                        cart.Add(new Product(productCode.Code, productCode.Description, productCode.Price, 1));
+
+                                    pTotal += productCode.Price;
+                                    nItems += 1;
+                                    productCode.Quantity -= 1;
+                                }
+                                else
+                                    Utils.PrintError("Out of stock.");
+                            }
                         }
                         break;
                     case 2:
